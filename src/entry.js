@@ -3,15 +3,17 @@ import { render } from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import reducer from './reducers/item'
-import Item from './components/item'
+import reducer from './reducers'
+import Branch from './components/branch'
 import './css/index.css'
 
 
 const store = createStore(reducer);
 
 const App = <Provider store={store}>
-    <Item />
+    <div style={{ height: 0 }}>
+        <Branch id="0" />
+    </div>
 </Provider>
 
 render(App, document.getElementById('root'))

@@ -1,20 +1,31 @@
 const genUid = require('node-uuid').v4;
-import item from './item.js'
+import item from './item'
 
 const rootItem = {
-    id: genUid(),
-    text: 'Your Mind Map'
+    id: '0',
+    text: 'My Mind Map :)',
+    childIds: ['1', '2'],
 }
 
 const initialState = {
-    [rootItem.id]: rootItem
+    '0': rootItem,
+    '1': {
+        id: '1',
+        text: 'sub1',
+        childIds: [ ],
+    },
+    '2': {
+        id: '2',
+        text: 'sub2',
+        childIds: [ ],
+    }
 }
 
 
 const map = (state = initialState, action) => {
     switch (action.type) {
         case 'EDIT_ITEM':
-            return {...state, ...item(state, action)}
+            return {...state, [action.id]: item(state[action.id], action)}
         default:
             return state
     }

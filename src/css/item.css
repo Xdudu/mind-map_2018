@@ -2,11 +2,14 @@
     position: relative;
     display: inline-block;
     min-width: 121px;
-    max-width: 270px;
+    max-width: 300px;
+    min-height: 48px;
+    margin: 15px 30px;
     padding: 10px 20px;
     background-color: #4a2d5d;
     border: 1px solid transparent;
     border-radius: 24px;
+    color: transparent;
     font-size: 20px;
     overflow: hidden;
     word-break: break-all;

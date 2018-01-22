@@ -1,0 +1,13 @@
+.branch {
+    display: inline-flex;
+    align-items: center;
+}
+
+.parent-wrap {
+    display: inline-flex;
+}
+
+.child-wrap {
+    display: inline-flex;
+    flex-direction: column;
+}
