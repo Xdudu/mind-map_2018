@@ -11,7 +11,7 @@ class AddWrap extends React.Component {
         const { currShow } = this.state;
         
         return <div>
-            <div className="add-before" style={{ display: (show && (currShow === '' || currShow === 'BEFORE')) ? 'block' : 'none' }}
+            <div className="add-before" style={{ display: show && (currShow === '' || currShow === 'BEFORE') ? 'block' : 'none' }}
                 onMouseEnter={() => this.setState({ currShow: 'BEFORE' })}
                 onMouseLeave={() => this.setState({ currShow: '' })}
                 onClick={() => handleClick('BEFORE')}>
@@ -19,7 +19,7 @@ class AddWrap extends React.Component {
                     <path d="M19.774 15.407l-1.294-1.294 5.519-5.519 5.519 5.519-1.294 1.294-4.226-4.226z"></path>
                 </svg>
             </div>
-            <div className="add-after" style={{ display: (show && (currShow === '' || currShow === 'AFTER')) ? 'block' : 'none' }}
+            <div className="add-after" style={{ display: show && (currShow === '' || currShow === 'AFTER') ? 'block' : 'none' }}
                 onMouseEnter={() => this.setState({ currShow: 'AFTER' })}
                 onMouseLeave={() => this.setState({ currShow: '' })}
                 onClick={() => handleClick('AFTER')}>
@@ -27,7 +27,7 @@ class AddWrap extends React.Component {
                     <path d="M19.774 8.593l4.226 4.226 4.226-4.226 1.294 1.294-5.52 5.52-5.52-5.52z"></path>
                 </svg>
             </div>
-            <div className="add-parent" style={{ display: (show && (currShow === '' || currShow === 'PARENT')) ? 'block' : 'none' }}
+            <div className="add-parent" style={{ display: show && (currShow === '' || currShow === 'PARENT') ? 'block' : 'none' }}
                 onMouseEnter={() => this.setState({ currShow: 'PARENT' })}
                 onMouseLeave={() => this.setState({ currShow: '' })}
                 onClick={() => handleClick('PARENT')}>
@@ -35,7 +35,7 @@ class AddWrap extends React.Component {
                     <path d="M15.704 28.594l-1.406 1.406-6.001-6.001 6.001-6.001 1.406 1.406-4.594 4.594z"></path>
                 </svg>
             </div>
-            <div className="add-child" style={{ display: (show && (currShow === '' || currShow === 'CHILD')) ? 'block' : 'none' }}
+            <div className="add-child" style={{ display: show && (currShow === '' || currShow === 'CHILD') ? 'block' : 'none' }}
                 onMouseEnter={() => this.setState({ currShow: 'CHILD' })}
                 onMouseLeave={() => this.setState({ currShow: '' })}
                 onClick={() => handleClick('CHILD')}>

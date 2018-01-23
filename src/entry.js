@@ -10,10 +10,22 @@ import './css/index.css'
 
 const store = createStore(reducer);
 
-const App = <Provider store={store}>
-    <div style={{ height: 0 }}>
-        <Branch id="0" />
-    </div>
-</Provider>
+const scrollToView = () => {
+    const windowWidth = window.innerWidth,
+        windowHeight = window.innerHeight,
+        scrollX = 2333 - windowWidth / 4,
+        scrollY = 2333 - windowHeight / 3;
+    window.scroll(scrollX, scrollY);
+}
+    
+const map = <div className="map">
+    <Branch id="0" />
+</div>
 
-render(App, document.getElementById('root'))
+
+window.onload = () => {
+    scrollToView();
+    render(<Provider store={store}>
+        {map}
+    </Provider>, document.getElementById('root'))
+}
