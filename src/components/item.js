@@ -1,7 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { editItem } from '../actions'
+import { 
+    editItem,
+    addItem
+} from '../actions'
+
+import AddWrap from './add-wrap'
+
 import '../css/item.css'
 
 
@@ -42,6 +48,10 @@ class Item extends React.Component {
         }
     }
     
+    handleAddItem = actionType => {
+        this.props.dispatch(addItem[actionType](this.props.id))
+    }
+    
     render() {
         return <div className="item">
             <textarea className="item-input"
@@ -54,6 +64,7 @@ class Item extends React.Component {
                 ref={label => this.mask = label}
                 onMouseDown={this.dispatchEditOrSelect} />
             { this.props.text }
+            <AddWrap handleClick={this.handleAddItem} />
         </div>
     }
 }

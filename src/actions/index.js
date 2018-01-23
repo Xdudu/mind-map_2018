@@ -4,6 +4,26 @@ const editItem = (id, text) => ({
     text
 })
 
+const addItem = {
+    BEFORE: id => ({
+        type: 'ADD_ITEM_BEFORE',
+        id
+    }),
+    AFTER: id => ({
+        type: 'ADD_ITEM_AFTER',
+        id
+    }),
+    PARENT: id => ({
+        type: 'ADD_PARENT_ITEM',
+        id
+    }),
+    CHILD: id => ({
+        type: 'ADD_CHILD_ITEM',
+        id
+    })
+}
+
 export {
     editItem,
+    addItem
 }

@@ -1,0 +1,31 @@
+.add-before {
+    position: absolute;
+    top: -24px;
+    left: calc(50% - 24px);
+    width: 48px;
+    height: 24px;
+}
+
+.add-after {
+    position: absolute;
+    bottom: -24px;
+    left: calc(50% - 24px);
+    width: 48px;
+    height: 24px;
+}
+
+.add-parent {
+    position: absolute;
+    left: -24px;
+    top: calc(50% - 24px);
+    width: 24px;
+    height: 48px;
+}
+
+.add-child {
+    position: absolute;
+    right: -24px;
+    top: calc(50% - 24px);
+    width: 24px;
+    height: 48px;
+}
