@@ -11,6 +11,7 @@
     border-radius: 24px;
     color: transparent;
     word-break: break-all;
+    white-space: pre-wrap;
 }
 
 .item-input {
