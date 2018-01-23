@@ -1,16 +1,15 @@
 .item {
     position: relative;
     display: inline-block;
-    min-width: 121px;
-    max-width: 300px;
-    min-height: 48px;
+    min-width: 6em;
+    max-width: 15em;
+    line-height: 1.4em;
+    min-height: 2.4em;
     margin: 15px 30px;
-    padding: 10px 20px;
-    background-color: #4a2d5d;
+    padding: 0.5em 1em;
     border: 1px solid transparent;
     border-radius: 24px;
     color: transparent;
-    font-size: 20px;
     word-break: break-all;
 }
 
@@ -22,12 +21,10 @@
     resize: none;
     /* *** */
     position: absolute;
-    width: calc(100% - 40px);
-    height: calc(100% - 20px);
-    background-color: #4a2d5d;
-    color: #fefaee;
-    font-size: 20px;
+    width: calc(100% - 2em);
+    height: calc(100% - 1em);
     font-family: 'Microsoft Yahei';
+    line-height: 1.4em;
     overflow: hidden;
 }
 
@@ -40,5 +37,52 @@
     border-radius: 24px;
 }
 
+.item-level-0 {
+    composes: item;
+    background-color: #4a2d5d;
+    font-size: 20px;
+}
 
+.item-level-0 .item-input {
+    background-color: #4a2d5d;
+    color: #fefaee;
+    font-size: 20px;
+}
 
+.item-level-1 {
+    composes: item;
+    background-color: #fbc2a4;
+    font-size: 16.8px;
+}
+
+.item-level-1 .item-input {
+    background-color: #fbc2a4;
+    color: #4a2d5d;
+    font-size: 16.8px;
+}
+
+.item-level-2 {
+    composes: item;
+    background-color: #c2e3d2;
+    font-size: 14.4px;
+}
+
+.item-level-2 .item-input {
+    background-color: #c2e3d2;
+    color: #4a2d5d;
+    font-size: 14.4px;
+}
+
+.item-level-3 {
+    composes: item;
+    border-radius: 0;
+    border-bottom: .3px solid #a39e8a;
+    background-color: none;
+    font-size: 12px;
+}
+
+.item-level-3 .item-input {
+    background-color: transparent;
+    color: #4a2d5d;
+    font-size: 12px;
+}

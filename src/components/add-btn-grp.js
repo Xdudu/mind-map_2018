@@ -14,6 +14,7 @@ class AddBtnGrp extends React.Component {
         
         return <div>
             { ['BEFORE', 'AFTER', 'PARENT', 'CHILD'].map(type => <AddBtn key={type}
+                strokeStyle={this.props.strokeStyle}
                 type={type}
                 show={showGrp && hoverOn === '' || hoverOn === type}
                 handleToggleHide={this.handleHoverChange}

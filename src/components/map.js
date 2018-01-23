@@ -8,7 +8,7 @@ import styles from '../css/map.css'
 
 const Map = CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })(
     () => <div styleName="map">
-        <Branch id="0" />
+        <Branch id="0" level={0} />
     </div>
 )
 

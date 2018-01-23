@@ -5,11 +5,12 @@ import styles from '../css/add-btn.css'
 
 
 const AddBtn = CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })(
-    ({ type, show, handleToggleHide, handleClick }) => (
-        <div styleName={`add-${type.toLowerCase()}`} style={{ display: show ? 'block' : 'none' }}
-           onMouseEnter={() => handleToggleHide(type)}
-           onMouseLeave={() => handleToggleHide(type)}
-           onClick={() => handleClick(type)}>
+    ({ strokeStyle, type, show, handleToggleHide, handleClick }) => (
+        <div styleName={`add-${type.toLowerCase()}`} 
+            style={{...{ display: show ? 'block' : 'none' }, ...strokeStyle}}
+            onMouseEnter={() => handleToggleHide(type)}
+            onMouseLeave={() => handleToggleHide(type)}
+            onClick={() => handleClick(type)}>
            <svg viewBox={btn[type].viewBox} version="1.1" xmlns="http://www.w3.org/2000/svg">
                <path d={btn[type].path}/>
            </svg>

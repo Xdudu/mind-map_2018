@@ -1,6 +1,11 @@
-.add-before {
+.add-icon {
     cursor: pointer;
     position: absolute;
+    stroke-width: 0;
+}
+
+.add-before {
+    composes: add-icon;
     top: -24px;
     left: calc(50% - 24px);
     width: 48px;
@@ -8,8 +13,7 @@
 }
 
 .add-after {
-    cursor: pointer;
-    position: absolute;
+    composes: add-icon;
     bottom: -24px;
     left: calc(50% - 24px);
     width: 48px;
@@ -17,8 +21,7 @@
 }
 
 .add-parent {
-    cursor: pointer;
-    position: absolute;
+    composes: add-icon;
     left: -24px;
     top: calc(50% - 24px);
     width: 24px;
@@ -26,8 +29,7 @@
 }
 
 .add-child {
-    cursor: pointer;
-    position: absolute;
+    composes: add-icon;
     right: -24px;
     top: calc(50% - 24px);
     width: 24px;

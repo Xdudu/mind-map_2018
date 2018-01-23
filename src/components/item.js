@@ -47,8 +47,46 @@ class Item extends React.Component {
         }
     }
     
+    getStyleName = level => {
+        switch (level) {
+            case 0:
+                return "item-level-0"
+            case 1:
+                return "item-level-1"
+            case 2:
+                return "item-level-2"
+            default:
+                return "item-level-3"
+        }
+    }
+    
+    getAddIconStrokeStyle = level => {
+        switch (level) {
+            case 0:
+                return ({
+                    stroke: '#4a2d5d',
+                    fill: '#4a2d5d',
+                })
+            case 1:
+                return ({
+                    stroke: '#fbc2a4',
+                    fill: '#fbc2a4',
+                })
+            case 2:
+                return ({
+                    stroke: '#c2e3d2',
+                    fill: '#c2e3d2',
+                })
+            default:
+                return ({
+                    stroke: '#a39e8a',
+                    fill: '#a39e8a',
+                })
+        }
+    }
+    
     render() {
-        return <div styleName="item" 
+        return <div styleName={this.getStyleName(this.props.level)} 
             onMouseEnter={() => this.setState({ showAddBtnGrp: true })}
             onMouseLeave={() => this.setState({ showAddBtnGrp: false })}>
             
@@ -63,7 +101,8 @@ class Item extends React.Component {
                 ref={label => this.mask = label}
                 onMouseDown={this.emitEditOrSelect} />
                 
-            <AddBtnGrp showGrp={this.state.showAddBtnGrp} handleClick={this.handleAddItem} />
+            <AddBtnGrp strokeStyle={this.getAddIconStrokeStyle(this.props.level)} 
+                showGrp={this.state.showAddBtnGrp} handleClick={this.handleAddItem} />
             
             { this.props.text }
         </div>

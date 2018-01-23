@@ -18,10 +18,11 @@ class Branch extends React.Component {
         
         return <div styleName={id === '0' ? "branch-root" : "branch"}>
             <div styleName="parent-item">
-                <Item {...parentItem} />
+                <Item level={this.props.level} {...parentItem} />
             </div>
             { parentItem.childIds.length > 0 && <div styleName="child-items">
-                { parentItem.childIds.map(id => <DecoratedBranch key={id} id={id} />) }
+                { parentItem.childIds.map(id => <DecoratedBranch 
+                    key={id} id={id} level={this.props.level + 1} />) }
             </div> }
         </div>
     }
