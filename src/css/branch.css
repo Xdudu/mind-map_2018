@@ -3,11 +3,17 @@
     align-items: center;
 }
 
-.parent-wrap {
+.branch-root {
+    height: 0;
+    display: inline-flex;
+    align-items: center;
+}
+
+.parent-item {
     display: inline-flex;
 }
 
-.child-wrap {
+.child-items {
     display: inline-flex;
     flex-direction: column;
 }

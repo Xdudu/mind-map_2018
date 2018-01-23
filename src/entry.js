@@ -18,7 +18,7 @@ const scrollToView = () => {
     window.scroll(scrollX, scrollY);
 }
     
-const map = <div className="map">
+const Map = () => <div className="map">
     <Branch id="0" />
 </div>
 
@@ -26,6 +26,6 @@ const map = <div className="map">
 window.onload = () => {
     scrollToView();
     render(<Provider store={store}>
-        {map}
+        <Map />
     </Provider>, document.getElementById('root'))
 }

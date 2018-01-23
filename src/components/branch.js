@@ -9,11 +9,11 @@ class Branch extends React.Component {
     render() {
         const { map, id } = this.props,
             parentItem = map[id];
-        return <div className="branch">
-            <div className="parent-wrap">
+        return <div className={id === '0' ? "branch-root" : "branch"}>
+            <div className="parent-item">
                 <Item {...parentItem} />
             </div>
-            { parentItem.childIds.length > 0 && <div className="child-wrap">
+            { parentItem.childIds.length > 0 && <div className="child-items">
                 { parentItem.childIds.map(id => <Branch key={id} id={id} map={map} />) }
             </div> }
         </div>

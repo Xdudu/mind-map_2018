@@ -6,17 +6,28 @@ import {
     addItem
 } from '../actions'
 
-import AddWrap from './add-wrap'
+import AddBtnGrp from './add-btn-grp'
 
 import '../css/item.css'
 
 
 class Item extends React.Component {
+    
     firstClickStamp = null
     
-    state = { showAddWrap: false }
+    state = { showAddBtnGrp: false }
     
-    dispatchEditOrSelect = e => {
+    handlePossibleExit = e => {
+        if (e.key === 'Enter') this.input.blur();
+    }
+    
+    handleChange = e => this.props.dispatch(editItem(this.props.id, e.target.value))
+    
+    toggleMask = () => this.mask.style.display = this.mask.style.display === 'none' ? 'block' : 'none'
+    
+    handleAddItem = type => this.props.dispatch(addItem[type](this.props.id))
+    
+    emitEditOrSelect = e => {
         e.preventDefault();
         if (!this.firstClickStamp) {
             this.firstClickStamp = Date.now();
@@ -26,7 +37,7 @@ class Item extends React.Component {
             if (timeStamp - this.firstClickStamp < 300) {
                 // edit
                 this.toggleMask();
-                this.textArea.focus();
+                this.input.focus();
                 this.firstClickStamp = null;
             } else {
                 this.firstClickStamp = timeStamp;
@@ -34,43 +45,28 @@ class Item extends React.Component {
         }
     }
     
-    handleChange = e => {
-        this.props.dispatch(editItem(this.props.id, e.target.value))
-    }
-    
-    handlePossibleExit = e => {
-        if (e.key === 'Enter') this.textArea.blur();
-    }
-    
-    toggleMask = () => {
-        if (this.mask.style.display === 'none') {
-            this.mask.style.display = 'block';
-        } else {
-            this.mask.style.display = 'none';
-        }
-    }
-    
-    handleAddItem = actionType => {
-        this.props.dispatch(addItem[actionType](this.props.id))
-    }
-    
     render() {
         return <div className="item" 
-            onMouseEnter={() => this.setState({ showAddWrap: true })}
-            onMouseLeave={() => this.setState({ showAddWrap: false })}>
+            onMouseEnter={() => this.setState({ showAddBtnGrp: true })}
+            onMouseLeave={() => this.setState({ showAddBtnGrp: false })}>
+            
             <textarea className="item-input"
-                ref={textArea => this.textArea = textArea}
+                ref={input => this.input = input}
                 value={this.props.text}
                 onKeyDown={this.handlePossibleExit}
                 onChange={this.handleChange}
                 onBlur={this.toggleMask} />
+                
             <label className="item-mask"
                 ref={label => this.mask = label}
-                onMouseDown={this.dispatchEditOrSelect} />
+                onMouseDown={this.emitEditOrSelect} />
+                
+            <AddBtnGrp showGrp={this.state.showAddBtnGrp} handleClick={this.handleAddItem} />
+            
             { this.props.text }
-            <AddWrap show={this.state.showAddWrap} handleClick={this.handleAddItem} />
         </div>
     }
+    
 }
 
 export default connect(state => state)(Item)

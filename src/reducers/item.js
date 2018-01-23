@@ -1,9 +1,9 @@
-const item = (state, action) => {
+const item = (item, action) => {
     switch (action.type) {
         case 'EDIT_ITEM':
-            return {...state, ...{ text: action.text }}
+            return {...item, ...{ text: action.text }}
         default:
-            return state
+            return item
     }
 }
 

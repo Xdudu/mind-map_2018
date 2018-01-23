@@ -1,36 +1,38 @@
-const genUid = require('node-uuid').v4;
+import genUid from 'uuid/v4';
 import item from './item'
 
-const rootItem = {
-    id: '0',
-    text: 'My Mind Map :)',
-    childIds: [],
-    parentId: '',
+
+const genNewItem = item => {
+    const defaultItem = {
+        id: genUid(),
+        text: '',
+        childIds: [],
+        parentId: ''
+    }
+    return {...defaultItem, ...item}
 }
 
-const initialState = {
-    '0': rootItem
+const initialMap = {
+    '0': {
+        id: '0',
+        text: 'My Mind Map :)',
+        childIds: [],
+        parentId: '',
+    }
 }
 
-const genNewItem = (parentId, childIds) => ({
-    id: genUid(),
-    text: '',
-    childIds: childIds || [],
-    parentId
-})
-
-const addSiblings = (state, id, ifAddBefore) => {
-    const commonParentId = state[id].parentId,
-        commonParent = state[commonParentId],
+const addSiblings = (map, id, ifAddBefore) => {
+    const commonParentId = map[id].parentId,
+        commonParent = map[commonParentId],
         newItemIdIndex = commonParent.childIds.indexOf(id) + (ifAddBefore ? 0 : 1),
         updatedChildIdsOfParent = [...commonParent.childIds];
         
-    const newItem = genNewItem(commonParentId);
+    const newItem = genNewItem({ parentId: commonParentId });
     
     updatedChildIdsOfParent.splice(newItemIdIndex, 0, newItem.id);
     
     return {
-        ...state, 
+        ...map, 
         [commonParentId]: {
             ...commonParent,
             childIds: updatedChildIdsOfParent
@@ -39,40 +41,43 @@ const addSiblings = (state, id, ifAddBefore) => {
     }
 }
 
-const addParent = (state, id) => {
-    const currParentId = state[id].parentId,
-        currParent = state[currParentId],
+const addParent = (map, id) => {
+    const currParentId = map[id].parentId,
+        currParent = map[currParentId],
         idIndex = currParent.childIds.indexOf(id),
         updatedChildIdsOfParent = [...currParent.childIds];
         
-    const newParentItem = genNewItem(currParentId, [...currParent.childIds]);
+    const newParentItem = genNewItem({
+        parentId: currParentId, 
+        childIds: [...currParent.childIds]
+    });
     
     updatedChildIdsOfParent.splice(idIndex, 1, newParentItem.id);
     
     return {
-        ...state, 
+        ...map, 
         [currParentId]: {
             ...currParent,
             childIds: updatedChildIdsOfParent
         },
         [id]: {
-            ...state[id],
+            ...map[id],
             parentId: newParentItem.id
         },
         [newParentItem.id]: newParentItem
     }
 }
 
-const addChild = (state, id) => {
-    const updatedChildIds = [...state[id].childIds];
-    const newChildItem = genNewItem(id);
+const addChild = (map, id) => {
+    const newChildItem = genNewItem({ parentId: id });
+    const updatedChildIds = [...map[id].childIds];
     
     updatedChildIds.push(newChildItem.id);
     
     return {
-        ...state,
+        ...map,
         [id]: {
-            ...state[id],
+            ...map[id],
             childIds: updatedChildIds
         },
         [newChildItem.id]: newChildItem
@@ -80,20 +85,20 @@ const addChild = (state, id) => {
 }
 
 
-const map = (state = initialState, action) => {
+const map = (map = initialMap, action) => {
     switch (action.type) {
         case 'EDIT_ITEM':
-            return {...state, [action.id]: item(state[action.id], action)}
+            return {...map, [action.id]: item(map[action.id], action)}
         case 'ADD_ITEM_BEFORE':
-            return addSiblings(state, action.id, true)
+            return addSiblings(map, action.id, true)
         case 'ADD_ITEM_AFTER':
-            return addSiblings(state, action.id)
+            return addSiblings(map, action.id)
         case 'ADD_PARENT_ITEM':
-            return addParent(state, action.id)
+            return addParent(map, action.id)
         case 'ADD_CHILD_ITEM':
-            return addChild(state, action.id)
+            return addChild(map, action.id)
         default:
-            return state
+            return map
     }
 }
 
