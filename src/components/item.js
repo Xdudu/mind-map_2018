@@ -23,7 +23,10 @@ class Item extends React.Component {
         if (e.key === 'Enter') this.input.blur();
     }
     
-    handleChange = e => this.props.dispatch(editItem(this.props.id, e.target.value))
+    handleChange = e => {
+        console.log('sdf');
+        this.props.dispatch(editItem(this.props.id, e.target.value))
+    }
     
     toggleMask = () => this.mask.style.display = this.mask.style.display === 'none' ? 'block' : 'none'
     

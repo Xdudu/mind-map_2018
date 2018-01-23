@@ -6,22 +6,17 @@ import Item from './item'
 import styles from '../css/branch.css'
 
 
-@CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
 class Branch extends React.Component {
     render() {
         const { map, id } = this.props,
             parentItem = map[id];
         
-        const DecoratedBranch = connect(state => state)(
-            CSSModules(Branch, styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
-        );
-        
-        return <div styleName={id === '0' ? "branch-root" : "branch"}>
-            <div styleName="parent-item">
+        return <div className={id === '0' ? styles["branch-root"] : styles["branch"]}>
+            <div className={styles["parent-item"]}>
                 <Item level={this.props.level} {...parentItem} />
             </div>
-            { parentItem.childIds.length > 0 && <div styleName="child-items">
-                { parentItem.childIds.map(id => <DecoratedBranch 
+            { parentItem.childIds.length > 0 && <div className={styles["child-items"]}>
+                { parentItem.childIds.map(id => <Branch map={map} 
                     key={id} id={id} level={this.props.level + 1} />) }
             </div> }
         </div>
