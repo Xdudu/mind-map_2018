@@ -14,6 +14,8 @@ import '../css/item.css'
 class Item extends React.Component {
     firstClickStamp = null
     
+    state = { showAddWrap: false }
+    
     dispatchEditOrSelect = e => {
         e.preventDefault();
         if (!this.firstClickStamp) {
@@ -53,7 +55,9 @@ class Item extends React.Component {
     }
     
     render() {
-        return <div className="item">
+        return <div className="item" 
+            onMouseEnter={() => this.setState({ showAddWrap: true })}
+            onMouseLeave={() => this.setState({ showAddWrap: false })}>
             <textarea className="item-input"
                 ref={textArea => this.textArea = textArea}
                 value={this.props.text}
@@ -64,7 +68,7 @@ class Item extends React.Component {
                 ref={label => this.mask = label}
                 onMouseDown={this.dispatchEditOrSelect} />
             { this.props.text }
-            <AddWrap handleClick={this.handleAddItem} />
+            <AddWrap show={this.state.showAddWrap} handleClick={this.handleAddItem} />
         </div>
     }
 }
