@@ -1,17 +1,20 @@
 import React from 'react'
+import CSSModules from 'react-css-modules'
 
-import '../css/add-btn.css'
+import styles from '../css/add-btn.css'
 
 
-const AddBtn = ({ type, show, handleToggleHide, handleClick }) => (
-    <div className={`add-${type.toLowerCase()}`} style={{ display: show ? 'block' : 'none' }}
-       onMouseEnter={() => handleToggleHide(type)}
-       onMouseLeave={() => handleToggleHide(type)}
-       onClick={() => handleClick(type)}>
-       <svg viewBox={btn[type].viewBox} version="1.1" xmlns="http://www.w3.org/2000/svg">
-           <path d={btn[type].path}/>
-       </svg>
-   </div>
+const AddBtn = CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })(
+    ({ type, show, handleToggleHide, handleClick }) => (
+        <div styleName={`add-${type.toLowerCase()}`} style={{ display: show ? 'block' : 'none' }}
+           onMouseEnter={() => handleToggleHide(type)}
+           onMouseLeave={() => handleToggleHide(type)}
+           onClick={() => handleClick(type)}>
+           <svg viewBox={btn[type].viewBox} version="1.1" xmlns="http://www.w3.org/2000/svg">
+               <path d={btn[type].path}/>
+           </svg>
+       </div>
+    )
 )
 
 const btn = {

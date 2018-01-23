@@ -4,7 +4,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import reducer from './reducers'
-import Branch from './components/branch'
+import Map from './components/map'
 import './css/index.css'
 
 
@@ -17,10 +17,6 @@ const scrollToView = () => {
         scrollY = 2333 - windowHeight / 3;
     window.scroll(scrollX, scrollY);
 }
-    
-const Map = () => <div className="map">
-    <Branch id="0" />
-</div>
 
 
 window.onload = () => {

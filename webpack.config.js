@@ -40,11 +40,17 @@ module.exports = {
                     { 
                         loader: "style-loader",
                         options: {
-                            singleton: true
+                            singleton: true,
+                            sourceMap: true
                         }
                     },
                     { 
-                        loader: "css-loader"
+                        loader: "css-loader",
+                        options: {
+                            modules: true,
+                            minimize: false,
+                            localIdentName: '[name]__[local]--[hash:base64:6]'
+                        }
                     }
                 ]
             }, {

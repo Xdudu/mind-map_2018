@@ -1,20 +1,27 @@
 import React from 'react'
+import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 
 import Item from './item'
-import '../css/branch.css'
+import styles from '../css/branch.css'
 
 
+@CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
 class Branch extends React.Component {
     render() {
         const { map, id } = this.props,
             parentItem = map[id];
-        return <div className={id === '0' ? "branch-root" : "branch"}>
-            <div className="parent-item">
+        
+        const DecoratedBranch = connect(state => state)(
+            CSSModules(Branch, styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
+        );
+        
+        return <div styleName={id === '0' ? "branch-root" : "branch"}>
+            <div styleName="parent-item">
                 <Item {...parentItem} />
             </div>
-            { parentItem.childIds.length > 0 && <div className="child-items">
-                { parentItem.childIds.map(id => <Branch key={id} id={id} map={map} />) }
+            { parentItem.childIds.length > 0 && <div styleName="child-items">
+                { parentItem.childIds.map(id => <DecoratedBranch key={id} id={id} />) }
             </div> }
         </div>
     }

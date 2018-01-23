@@ -1,4 +1,5 @@
 import React from 'react'
+import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 
 import { 
@@ -8,9 +9,10 @@ import {
 
 import AddBtnGrp from './add-btn-grp'
 
-import '../css/item.css'
+import styles from '../css/item.css'
 
 
+@CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })
 class Item extends React.Component {
     
     firstClickStamp = null
@@ -46,18 +48,18 @@ class Item extends React.Component {
     }
     
     render() {
-        return <div className="item" 
+        return <div styleName="item" 
             onMouseEnter={() => this.setState({ showAddBtnGrp: true })}
             onMouseLeave={() => this.setState({ showAddBtnGrp: false })}>
             
-            <textarea className="item-input"
+            <textarea styleName="item-input"
                 ref={input => this.input = input}
                 value={this.props.text}
                 onKeyDown={this.handlePossibleExit}
                 onChange={this.handleChange}
                 onBlur={this.toggleMask} />
                 
-            <label className="item-mask"
+            <label styleName="item-mask"
                 ref={label => this.mask = label}
                 onMouseDown={this.emitEditOrSelect} />
                 
