@@ -5,6 +5,8 @@ import { Provider } from 'react-redux'
 
 import reducer from './reducers'
 import Map from './components/map'
+import Tools from './components/tools'
+
 import './css/index.css'
 
 
@@ -22,6 +24,9 @@ const scrollToView = () => {
 window.onload = () => {
     scrollToView();
     render(<Provider store={store}>
-        <Map />
+        <div>
+            <Map />
+            <Tools />
+        </div>
     </Provider>, document.getElementById('root'))
 }

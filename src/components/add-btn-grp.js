@@ -12,7 +12,7 @@ class AddBtnGrp extends React.Component {
         const { color, showGrp, handleClick } = this.props;
         const { hoverOn } = this.state;
         
-        return <div style={{ stroke: color, fill: color }}>
+        return <div style={{ fill: color }}>
             { ['BEFORE', 'AFTER', 'PARENT', 'CHILD'].map(type => <AddBtn key={type}
                 type={type}
                 show={showGrp && hoverOn === '' || hoverOn === type}
