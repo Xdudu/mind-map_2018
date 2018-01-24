@@ -25,11 +25,11 @@ class Item extends React.Component {
         if (e.key === 'Enter') this.input.blur();
     }
     
-    handleChange = e => this.props.dispatch(editItem(this.props.id, e.target.value))
+    handleChange = e => this.props.dispatch(editItem(this.props.content.id, e.target.value))
     
     toggleMask = () => this.mask.style.display = this.mask.style.display === 'none' ? 'block' : 'none'
     
-    handleAddItem = type => this.props.dispatch(addItem[type](this.props.id))
+    handleAddItem = type => this.props.dispatch(addItem[type](this.props.content.id))
     
     emitEditOrSelect = e => {
         e.preventDefault();
@@ -38,7 +38,7 @@ class Item extends React.Component {
             this.clearClickStampTimer = setTimeout(() => {
                 // select
                 this.firstClickStamp = null;
-                this.props.dispatch(selectItem(this.props.id));
+                this.props.dispatch(selectItem(this.props.content.id));
             }, 300)
         } else {
             // edit
@@ -46,19 +46,6 @@ class Item extends React.Component {
             this.firstClickStamp = null;
             this.toggleMask();
             this.input.focus();
-        }
-    }
-    
-    getStyleName = level => {
-        switch (level) {
-            case 0:
-                return "item-level-0"
-            case 1:
-                return "item-level-1"
-            case 2:
-                return "item-level-2"
-            default:
-                return "item-level-3"
         }
     }
     
@@ -76,13 +63,16 @@ class Item extends React.Component {
     }
     
     render() {
-        return <div styleName={this.getStyleName(this.props.level) + (this.props.currentSelect === this.props.id ? "-selected" : "")} 
+        const { content, level, currentSelect } = this.props,
+            { id, text } = content;
+            
+        return <div styleName={`item-level-${level}${currentSelect === id ? '-selected' : ''}`} 
             onMouseEnter={() => this.setState({ showAddBtnGrp: true })}
             onMouseLeave={() => this.setState({ showAddBtnGrp: false })}>
             
             <textarea styleName="item-input"
                 ref={input => this.input = input}
-                value={this.props.text}
+                value={text}
                 onKeyDown={this.handlePossibleExit}
                 onChange={this.handleChange}
                 onBlur={this.toggleMask} />
@@ -91,10 +81,10 @@ class Item extends React.Component {
                 ref={label => this.mask = label}
                 onMouseDown={this.emitEditOrSelect} />
                 
-            <AddBtnGrp color={this.getAddBtnColor(this.props.level)} 
+            <AddBtnGrp color={this.getAddBtnColor(level)} 
                 showGrp={this.state.showAddBtnGrp} handleClick={this.handleAddItem} />
             
-            { this.props.text }
+            { text }
         </div>
     }
     
