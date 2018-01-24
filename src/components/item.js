@@ -63,28 +63,16 @@ class Item extends React.Component {
         }
     }
     
-    getAddIconStrokeStyle = level => {
+    getAddBtnColor = level => {
         switch (level) {
             case 0:
-                return ({
-                    stroke: '#4a2d5d',
-                    fill: '#4a2d5d',
-                })
+                return '#4a2d5d'
             case 1:
-                return ({
-                    stroke: '#fbc2a4',
-                    fill: '#fbc2a4',
-                })
+                return '#fbc2a4'
             case 2:
-                return ({
-                    stroke: '#c2e3d2',
-                    fill: '#c2e3d2',
-                })
+                return '#c2e3d2'
             default:
-                return ({
-                    stroke: '#a39e8a',
-                    fill: '#a39e8a',
-                })
+                return '#a39e8a'
         }
     }
     
@@ -104,7 +92,7 @@ class Item extends React.Component {
                 ref={label => this.mask = label}
                 onMouseDown={this.emitEditOrSelect} />
                 
-            <AddBtnGrp strokeStyle={this.getAddIconStrokeStyle(this.props.level)} 
+            <AddBtnGrp color={this.getAddBtnColor(this.props.level)} 
                 showGrp={this.state.showAddBtnGrp} handleClick={this.handleAddItem} />
             
             { this.props.text }

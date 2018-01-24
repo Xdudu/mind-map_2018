@@ -5,9 +5,9 @@ import styles from '../css/add-btn.css'
 
 
 const AddBtn = CSSModules(styles, { allowMultiple: true, handleNotFoundStyleName: 'ignore' })(
-    ({ strokeStyle, type, show, handleToggleHide, handleClick }) => (
+    ({ type, show, handleToggleHide, handleClick }) => (
         <div styleName={`add-${type.toLowerCase()}`} 
-            style={{...{ display: show ? 'block' : 'none' }, ...strokeStyle}}
+            style={{ display: show ? 'block' : 'none' }}
             onMouseEnter={() => handleToggleHide(type)}
             onMouseLeave={() => handleToggleHide(type)}
             onClick={() => handleClick(type)}>
