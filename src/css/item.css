@@ -44,6 +44,11 @@
     font-size: 20px;
 }
 
+.item-level-0-selected {
+    composes: item-level-0;
+    border-radius: 4px;
+}
+
 .item-level-0 .item-input {
     background-color: #4a2d5d;
     color: #fefaee;
@@ -54,6 +59,11 @@
     composes: item;
     background-color: #fbc2a4;
     font-size: 16.8px;
+}
+
+.item-level-1-selected {
+    composes: item-level-1;
+    border-radius: 4px;
 }
 
 .item-level-1 .item-input {
@@ -68,6 +78,11 @@
     font-size: 14.4px;
 }
 
+.item-level-2-selected {
+    composes: item-level-2;
+    border-radius: 4px;
+}
+
 .item-level-2 .item-input {
     background-color: #c2e3d2;
     color: #4a2d5d;
@@ -77,9 +92,15 @@
 .item-level-3 {
     composes: item;
     border-radius: 0;
-    border-bottom: .3px solid #a39e8a;
+    border-bottom: 1px solid #a39e8a;
     background-color: none;
     font-size: 12px;
+}
+
+.item-level-3-selected {
+    composes: item-level-3;
+    border-radius: 4px;
+    border: 1px solid #a39e8a;
 }
 
 .item-level-3 .item-input {

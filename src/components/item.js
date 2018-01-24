@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 
 import { 
+    selectItem,
     editItem,
     addItem
 } from '../actions'
@@ -16,6 +17,7 @@ import styles from '../css/item.css'
 class Item extends React.Component {
     
     firstClickStamp = null
+    clearClickStampTimer = null
     
     state = { showAddBtnGrp: false }
     
@@ -33,17 +35,17 @@ class Item extends React.Component {
         e.preventDefault();
         if (!this.firstClickStamp) {
             this.firstClickStamp = Date.now();
-            // select
-        } else {
-            const timeStamp = Date.now();
-            if (timeStamp - this.firstClickStamp < 300) {
-                // edit
-                this.toggleMask();
-                this.input.focus();
+            this.clearClickStampTimer = setTimeout(() => {
+                // select
                 this.firstClickStamp = null;
-            } else {
-                this.firstClickStamp = timeStamp;
-            }
+                this.props.dispatch(selectItem(this.props.id));
+            }, 300)
+        } else {
+            // edit
+            clearTimeout(this.clearClickStampTimer);
+            this.firstClickStamp = null;
+            this.toggleMask();
+            this.input.focus();
         }
     }
     
@@ -74,7 +76,7 @@ class Item extends React.Component {
     }
     
     render() {
-        return <div styleName={this.getStyleName(this.props.level)} 
+        return <div styleName={this.getStyleName(this.props.level) + (this.props.currentSelect === this.props.id ? "-selected" : "")} 
             onMouseEnter={() => this.setState({ showAddBtnGrp: true })}
             onMouseLeave={() => this.setState({ showAddBtnGrp: false })}>
             

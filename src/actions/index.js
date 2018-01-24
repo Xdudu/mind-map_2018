@@ -1,3 +1,8 @@
+const selectItem = id => ({
+    type: 'SELECT_ITEM',
+    id
+})
+
 const editItem = (id, text) => ({
     type: 'EDIT_ITEM',
     id,
@@ -24,6 +29,7 @@ const addItem = {
 }
 
 export {
+    selectItem,
     editItem,
     addItem
 }

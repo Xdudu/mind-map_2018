@@ -4,8 +4,8 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import reducer from './reducers'
-import Map from './components/map'
-import Tools from './components/tools'
+import { selectItem } from './actions'
+import App from './components/app'
 
 import './css/index.css'
 
@@ -20,13 +20,13 @@ const scrollToView = () => {
     window.scroll(scrollX, scrollY);
 }
 
+document.body.onclick = e => {
+    if (e.target == document.body) store.dispatch(selectItem())
+}
 
 window.onload = () => {
     scrollToView();
     render(<Provider store={store}>
-        <div>
-            <Map />
-            <Tools />
-        </div>
+        <App />
     </Provider>, document.getElementById('root'))
 }
