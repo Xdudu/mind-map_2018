@@ -22,7 +22,7 @@
     resize: none;
     /* *** */
     position: absolute;
-    width: calc(100% - 2em + 1px);
+    width: calc(100% - 2em + 1px); /* */
     height: calc(100% - 1em);
     font-family: 'Microsoft Yahei';
     line-height: 1.4em;
