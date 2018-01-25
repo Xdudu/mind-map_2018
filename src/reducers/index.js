@@ -10,7 +10,7 @@ const initialState = {
 }
 
 export default (state = initialState, action) => ({
-    map: map(state.map, action),
+    map: map(state.map, action, state.copiedBranch),
     copiedBranch: copiedBranch(state.copiedBranch, action, state.map),
-    selectedId: selectedId(selectedId, action)
+    selectedId: selectedId(state.selectedId, action)
 })

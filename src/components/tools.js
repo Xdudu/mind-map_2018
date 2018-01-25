@@ -18,6 +18,7 @@ class Tools extends React.Component {
     toggleShowToolGrp = () => this.setState({ showToolGrp: !this.state.showToolGrp })
     
     handleCopyItem = () => {
+        console.log(this.props.selectedId);
         if (!this.props.selectedId) return
         this.props.dispatch(copy(this.props.selectedId));
     }

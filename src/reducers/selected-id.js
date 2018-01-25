@@ -1,6 +1,6 @@
 const initialSelectedId = ''
 
-const selectedId = (selectedId = defaultSelectedId, action) => {
+const selectedId = (selectedId = initialSelectedId, action) => {
     if (action.type === 'SELECT_ITEM') {
         return action.id || ''
     } else {
