@@ -1,4 +1,4 @@
-import genUid from 'uuid/v4';
+import genUid from 'uuid/v4'
 import item from './item'
 
 
@@ -103,4 +103,7 @@ const map = (map = initialMap, action) => {
 }
 
 
-export default map 
+export {
+    map as default,
+    initialMap
+}

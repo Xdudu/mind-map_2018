@@ -28,8 +28,14 @@ const addItem = {
     })
 }
 
+const copy = id => ({
+    type: 'COPY',
+    id
+})
+
 export {
     selectItem,
     editItem,
-    addItem
+    addItem,
+    copy
 }

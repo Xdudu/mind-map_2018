@@ -2,6 +2,10 @@ import React from 'react'
 import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 
+import {
+    copy,
+} from '../actions'
+
 import styles from '../css/tools.css'
 
 
@@ -12,6 +16,11 @@ class Tools extends React.Component {
     }
     
     toggleShowToolGrp = () => this.setState({ showToolGrp: !this.state.showToolGrp })
+    
+    handleCopyItem = () => {
+        if (!this.props.selectedId) return
+        this.props.dispatch(copy(this.props.selectedId));
+    }
     
     render() {
         const { showToolGrp } = this.state;
@@ -35,11 +44,26 @@ class Tools extends React.Component {
                         transform: `translateX(${showToolGrp ? 0 : 264}px)`,
                         opacity: showToolGrp ? 1 : 0
                     }}>
-                    { ['copy', 'paste', 'cut', 'delete'].map(tool => <div styleName="btn" key={tool}>
+                    <div styleName="btn" onClick={this.handleCopyItem}>
                         <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                            <path d={ICON_PATH[tool]} />
+                            <path d={ICON_PATH.copy} />
                         </svg>
-                    </div>) }
+                    </div>
+                    <div styleName="btn">
+                        <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path d={ICON_PATH.paste} />
+                        </svg>
+                    </div>
+                    <div styleName="btn">
+                        <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path d={ICON_PATH.cut} />
+                        </svg>
+                    </div>
+                    <div styleName="btn">
+                        <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <path d={ICON_PATH.delete} />
+                        </svg>
+                    </div>
                     <div styleName="vertical-line" />
                     
                     <div styleName="btn">
@@ -72,4 +96,4 @@ const ICON_PATH = {
 }
 
 
-export default Tools
+export default connect(state => state)(Tools)

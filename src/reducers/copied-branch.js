@@ -1,0 +1,59 @@
+import genUid from 'uuid/v4'
+
+
+const initialCopiedBranch = { 
+    rootId: '', 
+    items: {} 
+};
+
+const renewIdsInItem = (item, parentId, id) => ({
+    ...item,
+    parentId: parentId,
+    id: id || genUid(),
+    childIds: item.childIds.map(oldId => genUid())
+})
+
+const genMapBetween2Array = (arr1, arr2) => new Map(arr1.map((el, i) => [el, arr2[i]]))
+
+const copyDescendants = (rootItem, newRootItem, map) => {
+    const mapOfChildIds = genMapBetween2Array(rootItem.childIds, newRootItem.childIds);
+    
+    return rootItem.childIds.reduce((descendants, id) => {
+        const newChildItem = { ...renewIdsInItem(map[id], newRootItem.id, mapOfChildIds.get(id)) };
+        return ({
+            ...descendants, 
+            [newChildItem.id]: newChildItem,
+            ...copyDescendants(map[id], newChildItem, map)
+        })
+    }, {})
+}
+
+const copiedBranch = (copiedBranch = initialCopiedBranch, action, map) => {
+    if (action.type === 'COPY') {
+        const rootId = action.id,
+            rootItem = map[rootId],
+            newRootItem = renewIdsInItem(rootItem, '');
+            console.log({
+                rootId: newRootItem.id,
+                items: { 
+                    [newRootItem.id]: newRootItem,
+                    ...copyDescendants(rootItem, newRootItem, map)
+                }
+            });
+        return ({
+            rootId: newRootItem.id,
+            items: { 
+                [newRootItem.id]: newRootItem,
+                ...copyDescendants(rootItem, newRootItem, map)
+            }
+        }) 
+    } else {
+        return copiedBranch
+    }
+}
+
+
+export {
+    copiedBranch as default,
+    initialCopiedBranch
+}

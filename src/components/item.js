@@ -63,10 +63,10 @@ class Item extends React.Component {
     }
     
     render() {
-        const { content, level, currentSelect } = this.props,
+        const { content, level, selectedId } = this.props,
             { id, text } = content;
             
-        return <div styleName={`item-level-${level}${currentSelect === id ? '-selected' : ''}`} 
+        return <div styleName={`item-level-${level}${selectedId === id ? '-selected' : ''}`} 
             onMouseEnter={() => this.setState({ showAddBtnGrp: true })}
             onMouseLeave={() => this.setState({ showAddBtnGrp: false })}>
             
