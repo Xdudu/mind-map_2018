@@ -9,11 +9,13 @@ class AddBtnGrp extends React.Component {
     handleHoverChange = type => this.setState({ hoverOn: !this.state.hoverOn ? type : '' })
     
     render() {
-        const { color, showGrp, handleClick } = this.props;
+        const { color, onlyRenderChildBtn, showGrp, handleClick } = this.props;
         const { hoverOn } = this.state;
         
+        const btnGrp = onlyRenderChildBtn ? ['CHILD'] : ['BEFORE', 'AFTER', 'PARENT', 'CHILD'];
+        
         return <div style={{ fill: color }}>
-            { ['BEFORE', 'AFTER', 'PARENT', 'CHILD'].map(type => <AddBtn key={type}
+            { btnGrp.map(type => <AddBtn key={type}
                 type={type}
                 show={showGrp && hoverOn === '' || hoverOn === type}
                 handleToggleHide={this.handleHoverChange}

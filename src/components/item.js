@@ -82,7 +82,9 @@ class Item extends React.Component {
                 onMouseDown={this.emitEditOrSelect} />
                 
             <AddBtnGrp color={this.getAddBtnColor(level)} 
-                showGrp={this.state.showAddBtnGrp} handleClick={this.handleAddItem} />
+                onlyRenderChildBtn={id === '0'}
+                showGrp={this.state.showAddBtnGrp} 
+                handleClick={this.handleAddItem} />
             
             { text }
         </div>
