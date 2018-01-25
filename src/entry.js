@@ -21,7 +21,9 @@ const scrollToView = () => {
 }
 
 document.body.onclick = e => {
-    if (e.target == document.body) store.dispatch(selectItem())
+    if (e.target === document.body || typeof e.target.className === 'string' && e.target.className.indexOf('branch') === 0) {
+        store.dispatch(selectItem())
+    }
 }
 
 window.onload = () => {
