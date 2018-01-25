@@ -14,6 +14,7 @@ class Branch extends React.Component {
         return <div className={id === '0' ? styles["branch-root"] : styles["branch"]}>
             <div className={styles["parent-item"]}>
                 <Item level={this.props.level} content={parentItem} />
+                { parentItem.childIds.length > 0 && <div className={styles["link"]} /> }
             </div>
             { parentItem.childIds.length > 0 && <div className={styles["child-items"]}>
                 { parentItem.childIds.map(id => <Branch map={map} 
