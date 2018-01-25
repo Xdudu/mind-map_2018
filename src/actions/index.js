@@ -38,10 +38,22 @@ const paste = id => ({
     id
 })
 
+const cut = id => ({
+    type: 'CUT',
+    id
+})
+
+const remove = id => ({
+    type: 'REMOVE',
+    id
+})
+
 export {
     selectItem,
     editItem,
     addItem,
     copy,
-    paste
+    paste,
+    cut,
+    remove
 }

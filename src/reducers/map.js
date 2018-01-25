@@ -84,6 +84,17 @@ const addChild = (map, id) => {
     }
 }
 
+const getDescendantIds = (rootId, map) => (
+    map[rootId].childIds.reduce((descendantIds, id) => (
+        [...descendantIds, id, getDescendantIds(id, map)]
+    ), [])
+)
+
+const deleteElFromArr = (arr, el) => {
+    const elIndex = arr.indexOf(el);
+    return [...arr.slice(0, elIndex), ...arr.slice(elIndex + 1)]
+}
+
 
 const map = (map = initialMap, action, state) => {
     switch (action.type) {
@@ -107,6 +118,16 @@ const map = (map = initialMap, action, state) => {
                     ...{ parentId: selectedId } 
                 },
                 [selectedId]: { ...map[selectedId], childIds: [...map[selectedId].childIds, copiedBranch.rootId] }
+            }
+        case 'CUT':
+        case 'REMOVE':
+            map = {...map};
+            const { parentId } = map[action.id],
+                deleteIds = [action.id, ...getDescendantIds(action.id, map)];
+            deleteIds.forEach(id => delete map[id]);
+            return {
+                ...map,
+                [parentId]: { ...map[parentId], childIds: deleteElFromArr(map[parentId].childIds, action.id) }
             }
         default:
             return map

@@ -29,7 +29,7 @@ const copyDescendants = (rootItem, newRootItem, map) => {
 }
 
 const copiedBranch = (copiedBranch = initialCopiedBranch, action, state) => {
-    if (action.type === 'COPY') {
+    if (action.type === 'COPY' || action.type === 'CUT') {
         const rootId = action.id,
             rootItem = state.map[rootId],
             newRootItem = renewIdsInItem(rootItem, '');
