@@ -3,7 +3,7 @@ const initialSelectedId = ''
 const selectedId = (selectedId = initialSelectedId, action, state) => {
     if (action.type === 'SELECT_ITEM') {
         return action.id || ''
-    } else if (action.type === 'CUT' || action.type === 'DELETE') {
+    } else if (action.type === 'CUT' || action.type === 'REMOVE') {
         return ''
     } else {
         return selectedId
