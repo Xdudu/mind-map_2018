@@ -48,9 +48,15 @@ const remove = id => ({
     id
 })
 
+const numberChild = id => ({
+    type: 'NUMBER_CHILD',
+    id
+})
+
 export {
     selectItem,
     editItem,
+    numberChild,
     addItem,
     copy,
     paste,

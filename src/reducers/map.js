@@ -7,7 +7,8 @@ const genNewItem = item => {
         id: genUid(),
         text: '',
         childIds: [],
-        parentId: ''
+        parentId: '',
+        numberChild: false,
     }
     return {...defaultItem, ...item}
 }
@@ -99,6 +100,7 @@ const deleteElFromArr = (arr, el) => {
 const map = (map = initialMap, action, state) => {
     switch (action.type) {
         case 'EDIT_ITEM':
+        case 'NUMBER_CHILD':
             return {...map, [action.id]: item(map[action.id], action)}
         case 'ADD_ITEM_BEFORE':
             return addSiblings(map, action.id, true)

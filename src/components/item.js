@@ -63,7 +63,7 @@ class Item extends React.Component {
     }
     
     render() {
-        const { content, level, selectedId } = this.props,
+        const { content, level, selectedId, beNumbered } = this.props,
             { id, text } = content;
             
         return <div styleName={`item-level-${level}${selectedId === id ? '-selected' : ''}`} 
@@ -87,6 +87,8 @@ class Item extends React.Component {
                 handleClick={this.handleAddItem} />
             
             { text }
+            
+            { beNumbered && <div styleName="item-no">{beNumbered}</div> }
         </div>
     }
     

@@ -58,6 +58,7 @@
 .item-level-1 {
     composes: item;
     background-color: #fbc2a4;
+    color: #4a2d5d;
     font-size: 16.8px;
 }
 
@@ -75,6 +76,7 @@
 .item-level-2 {
     composes: item;
     background-color: #c2e3d2;
+    color: #4a2d5d;
     font-size: 14.4px;
 }
 
@@ -94,6 +96,7 @@
     border-radius: 0;
     border-bottom: 1px solid #a39e8a;
     background-color: none;
+    color: #4a2d5d;
     font-size: 12px;
 }
 
@@ -107,4 +110,11 @@
     background-color: transparent;
     color: #4a2d5d;
     font-size: 12px;
+}
+
+.item-no {
+    position: absolute;
+    left: -4px;
+    top: -12px;
+    font-size: 0.8em;
 }
