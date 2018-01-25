@@ -28,16 +28,16 @@ const copyDescendants = (rootItem, newRootItem, map) => {
     }, {})
 }
 
-const copiedBranch = (copiedBranch = initialCopiedBranch, action, map) => {
+const copiedBranch = (copiedBranch = initialCopiedBranch, action, state) => {
     if (action.type === 'COPY') {
         const rootId = action.id,
-            rootItem = map[rootId],
+            rootItem = state.map[rootId],
             newRootItem = renewIdsInItem(rootItem, '');
         return ({
             rootId: newRootItem.id,
             items: { 
                 [newRootItem.id]: newRootItem,
-                ...copyDescendants(rootItem, newRootItem, map)
+                ...copyDescendants(rootItem, newRootItem, state.map)
             }
         }) 
     } else if (action.type === 'PASTE') {
