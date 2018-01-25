@@ -33,9 +33,15 @@ const copy = id => ({
     id
 })
 
+const paste = id => ({
+    type: 'PASTE',
+    id
+})
+
 export {
     selectItem,
     editItem,
     addItem,
-    copy
+    copy,
+    paste
 }

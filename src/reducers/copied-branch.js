@@ -33,18 +33,21 @@ const copiedBranch = (copiedBranch = initialCopiedBranch, action, map) => {
         const rootId = action.id,
             rootItem = map[rootId],
             newRootItem = renewIdsInItem(rootItem, '');
-            console.log({
-                rootId: newRootItem.id,
-                items: { 
-                    [newRootItem.id]: newRootItem,
-                    ...copyDescendants(rootItem, newRootItem, map)
-                }
-            });
         return ({
             rootId: newRootItem.id,
             items: { 
                 [newRootItem.id]: newRootItem,
                 ...copyDescendants(rootItem, newRootItem, map)
+            }
+        }) 
+    } else if (action.type === 'PASTE') {
+        const rootItem = copiedBranch.items[copiedBranch.rootId],
+            newRootItem = renewIdsInItem(rootItem, '');
+        return ({
+            rootId: newRootItem.id,
+            items: { 
+                [newRootItem.id]: newRootItem,
+                ...copyDescendants(rootItem, newRootItem, copiedBranch.items)
             }
         }) 
     } else {

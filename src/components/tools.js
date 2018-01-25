@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import {
     copy,
+    paste
 } from '../actions'
 
 import styles from '../css/tools.css'
@@ -18,9 +19,13 @@ class Tools extends React.Component {
     toggleShowToolGrp = () => this.setState({ showToolGrp: !this.state.showToolGrp })
     
     handleCopyItem = () => {
-        console.log(this.props.selectedId);
         if (!this.props.selectedId) return
         this.props.dispatch(copy(this.props.selectedId));
+    }
+    
+    handlePasteItem = () => {
+        if (!this.props.selectedId) return
+        this.props.dispatch(paste(this.props.selectedId));
     }
     
     render() {
@@ -50,7 +55,7 @@ class Tools extends React.Component {
                             <path d={ICON_PATH.copy} />
                         </svg>
                     </div>
-                    <div styleName="btn">
+                    <div styleName="btn" onClick={this.handlePasteItem}>
                         <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <path d={ICON_PATH.paste} />
                         </svg>

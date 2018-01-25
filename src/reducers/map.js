@@ -85,8 +85,7 @@ const addChild = (map, id) => {
 }
 
 
-const map = (map = initialMap, action, copiedBranch) => {
-    console.log(map);
+const map = (map = initialMap, action, state) => {
     switch (action.type) {
         case 'EDIT_ITEM':
             return {...map, [action.id]: item(map[action.id], action)}
@@ -99,7 +98,16 @@ const map = (map = initialMap, action, copiedBranch) => {
         case 'ADD_CHILD_ITEM':
             return addChild(map, action.id)
         case 'PASTE': 
-            return
+            const { copiedBranch, selectedId } = state;
+            return {
+                ...map, 
+                ...copiedBranch.items, 
+                [copiedBranch.rootId]: { 
+                    ...copiedBranch.items[copiedBranch.rootId], 
+                    ...{ parentId: selectedId } 
+                },
+                [selectedId]: { ...map[selectedId], childIds: [...map[selectedId].childIds, copiedBranch.rootId] }
+            }
         default:
             return map
     }
