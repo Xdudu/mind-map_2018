@@ -41,6 +41,8 @@ const copiedBranch = (copiedBranch = initialCopiedBranch, action, state) => {
             }
         }) 
     } else if (action.type === 'PASTE') {
+        if (copiedBranch.rootId === '') return copiedBranch
+        
         const rootItem = copiedBranch.items[copiedBranch.rootId],
             newRootItem = renewIdsInItem(rootItem, '');
         return ({

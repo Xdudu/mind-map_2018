@@ -112,6 +112,8 @@ const map = (map = initialMap, action, state) => {
             return addChild(map, action.id)
         case 'PASTE': 
             const { copiedBranch, selectedId } = state;
+            if (copiedBranch.rootId === '') return map
+            
             return {
                 ...map, 
                 ...copiedBranch.items, 
