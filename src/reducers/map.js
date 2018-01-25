@@ -49,7 +49,7 @@ const addParent = (map, id) => {
         
     const newParentItem = genNewItem({
         parentId: currParentId, 
-        childIds: [...currParent.childIds]
+        childIds: [id]
     });
     
     updatedChildIdsOfParent.splice(idIndex, 1, newParentItem.id);
