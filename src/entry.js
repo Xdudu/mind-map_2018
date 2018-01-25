@@ -15,8 +15,8 @@ const store = createStore(reducer);
 const scrollToView = () => {
     const windowWidth = window.innerWidth,
         windowHeight = window.innerHeight,
-        scrollX = 2333 - windowWidth / 4,
-        scrollY = 2333 - windowHeight / 3;
+        scrollX = 333 - windowWidth / 4,
+        scrollY = 3333 - windowHeight / 3;
     window.scroll(scrollX, scrollY);
 }
 
