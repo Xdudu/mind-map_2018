@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import * as actions from '../actions'
 
+import { saveMap } from '../helpers/storage'
+
 import styles from '../css/tools.css'
 
 
@@ -71,7 +73,7 @@ class Tools extends React.Component {
                     </div>
                     <div styleName="vertical-line" />
                     
-                    <div styleName="btn">
+                    <div styleName="btn" onClick={() => saveMap(this.props.map)}>
                         <svg viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg">
                             <path d={ICON_PATH.save} />
                         </svg>

@@ -6,11 +6,14 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { selectItem } from './actions'
 import App from './components/app'
+import { retrieveMap } from './helpers/storage'
 
 import './css/index.css'
 
 
-const store = createStore(reducer);
+const retrievedMap = retrieveMap();
+
+const store = createStore(reducer, { map: retrievedMap });
 
 const scrollToView = () => {
     const windowWidth = window.innerWidth,
