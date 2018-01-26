@@ -3,7 +3,6 @@ import CSSModules from 'react-css-modules'
 import { connect } from 'react-redux'
 
 import * as actions from '../actions'
-
 import { saveMap } from '../helpers/storage'
 
 import styles from '../css/tools.css'

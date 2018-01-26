@@ -1,8 +1,16 @@
+import showToast from './toast'
+
+
 const KEY = '__MIND_MAP'
 
 const saveMap = (map) => {
-    const stringifiedMap = JSON.stringify(map);
-    localStorage.setItem(KEY, stringifiedMap);
+    try {
+        const stringifiedMap = JSON.stringify(map);
+        localStorage.setItem(KEY, stringifiedMap);
+        showToast('保存成功，下次打开可继续编辑 :)')
+    } catch (e) {
+        showToast('保存失败')
+    }
 }
 
 const retrieveMap = () => {
