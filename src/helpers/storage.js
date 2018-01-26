@@ -6,7 +6,6 @@ const saveMap = (map) => {
 }
 
 const retrieveMap = () => {
-    let map;
     try {
         const stringifiedMap = localStorage.getItem(KEY);
         if (stringifiedMap === null) {
