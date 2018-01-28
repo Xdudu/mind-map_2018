@@ -4,9 +4,6 @@
   "description": "A tool for creating mind maps",
   "author": "Xdudu",
   "license": "MIT",
-  "scripts": {
-    "start": "webpack-dev-server -d --port 9000"
-  },
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -20,7 +17,9 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
+    "gh-pages": "^1.1.0",
     "html-webpack-plugin": "^2.30.1",
     "react-css-modules": "^4.7.1",
     "react-redux": "^5.0.6",
@@ -28,5 +27,10 @@
     "style-loader": "^0.19.1",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.9.7"
+  },
+  "scripts": {
+    "start": "webpack-dev-server -d --port 9000",
+    "build": "webpack --config webpack.prod.config.js",
+    "deploy": "gh-pages -d dist"
   }
 }
