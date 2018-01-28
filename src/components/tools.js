@@ -84,15 +84,15 @@ const ICON_PATH = {
 const TOOL_BTN_TIP_INFO = {
     copy: {
         name: '复制',
-        shortcut: 'Ctrl + c'
+        shortcut: 'Ctrl + C'
     },
     paste: {
         name: '粘贴',
-        shortcut: 'Ctrl + v'
+        shortcut: 'Ctrl + V'
     },
     cut: {
         name: '剪切',
-        shortcut: 'Ctrl + x'
+        shortcut: 'Ctrl + X'
     },
     remove: {
         name: '删除分支',
@@ -100,11 +100,11 @@ const TOOL_BTN_TIP_INFO = {
     },
     numberChild: {
         name: '编号子级',
-        shortcut: 'Ctrl + l'
+        shortcut: 'Ctrl + L'
     },
     save: {
         name: '保存',
-        shortcut: 'Ctrl + s'
+        shortcut: 'Ctrl + S'
     },
 }
 
