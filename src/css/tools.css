@@ -6,22 +6,13 @@
     height: 36px;
 }
 
-.btn {
+.expand-btn {
+    position: absolute;
+    z-index: 99999;
     display: inline-block;
     width: 36px;
     height: 36px;
     cursor: pointer;
-    transition: all 100ms ease-out;
-}
-
-.btn:hover {
-    background-color: rgba(74, 59, 12, .05);
-}
-
-.expand-btn {
-    composes: btn;
-    position: absolute;
-    z-index: 99999;
     background-color: #fefaee;
     fill: #a39e8a;
     border-radius: 50%;

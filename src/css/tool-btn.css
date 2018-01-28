@@ -1,0 +1,11 @@
+.btn {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all 100ms ease-out;
+}
+
+.btn:hover {
+    background-color: rgba(74, 59, 12, .05);
+}
