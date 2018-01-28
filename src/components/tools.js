@@ -42,27 +42,27 @@ class Tools extends React.Component {
             <div styleName="tool-grp-container">
                 <div styleName="tool-grp"
                     style={{ 
-                        transform: `translateX(${showToolGrp ? 0 : 264}px)`,
+                        transform: `translateX(${showToolGrp ? 0 : 320}px)`,
                         opacity: showToolGrp ? 1 : 0
                     }}>
                     
-                    <ToolBtn svgPath={ICON_PATH.copy} 
+                    <ToolBtn {...TOOL_BTN_TIP_INFO.copy} svgPath={ICON_PATH.copy}
                         handleClick={() => this.handleOptionsOnMap('copy')} />
-                    <ToolBtn svgPath={ICON_PATH.paste} 
+                    <ToolBtn {...TOOL_BTN_TIP_INFO.paste} svgPath={ICON_PATH.paste} 
                         handleClick={() => this.handleOptionsOnMap('paste')} />
-                    <ToolBtn svgPath={ICON_PATH.cut} 
+                    <ToolBtn {...TOOL_BTN_TIP_INFO.cut} svgPath={ICON_PATH.cut} 
                         handleClick={() => this.handleOptionsOnMap('cut')} />
-                    <ToolBtn svgPath={ICON_PATH.remove} 
+                    <ToolBtn {...TOOL_BTN_TIP_INFO.remove} svgPath={ICON_PATH.remove} 
                         handleClick={() => this.handleOptionsOnMap('remove')} />
                         
                     <div styleName="vertical-line" />
                     
-                    <ToolBtn svgPath={ICON_PATH.numberChild} 
+                    <ToolBtn {...TOOL_BTN_TIP_INFO.numberChild} svgPath={ICON_PATH.numberChild} 
                         handleClick={() => this.handleOptionsOnMap('numberChild')} />
                         
                     <div styleName="vertical-line" />
                     
-                    <ToolBtn svgPath={ICON_PATH.save} 
+                    <ToolBtn {...TOOL_BTN_TIP_INFO.save} svgPath={ICON_PATH.save} 
                         handleClick={() => saveMap(this.props.map)} />
                 </div>
             </div>
@@ -79,6 +79,33 @@ const ICON_PATH = {
     remove: 'M24.727 12.627l-5.373 5.373 5.373 5.373-1.354 1.354-5.373-5.373-5.373 5.373-1.354-1.354 5.373-5.373-5.373-5.373 1.354-1.354 5.373 5.373 5.373-5.373z',
     numberChild: 'M13.682 24.192c0 0.941-0.735 1.471-1.625 1.471-0.539 0-1.086-0.18-1.471-0.565l0.488-0.753c0.231 0.214 0.582 0.385 0.907 0.385 0.299 0 0.616-0.145 0.616-0.488 0-0.479-0.547-0.505-0.898-0.479l-0.222-0.479c0.308-0.393 0.59-0.83 0.958-1.163v-0.009c-0.274 0-0.556 0.017-0.83 0.017v0.453h-0.907v-1.3h2.848v0.753l-0.812 0.984c0.573 0.137 0.949 0.582 0.949 1.172zM13.699 18.83v1.36h-3.096c-0.026-0.154-0.051-0.308-0.051-0.462 0-1.582 1.933-1.822 1.933-2.54 0-0.291-0.18-0.445-0.462-0.445-0.299 0-0.547 0.257-0.693 0.496l-0.727-0.505c0.282-0.59 0.864-0.924 1.514-0.924 0.795 0 1.48 0.47 1.48 1.317 0 1.266-1.856 1.548-1.881 2.215h1.086v-0.513h0.898zM25.749 21.558v1.642c0 0.145-0.128 0.274-0.274 0.274h-10.399c-0.154 0-0.274-0.128-0.274-0.274v-1.642c0-0.154 0.12-0.274 0.274-0.274h10.399c0.145 0 0.274 0.12 0.274 0.274zM13.708 13.869v0.847h-2.865v-0.847h0.915c0-0.693 0.009-1.385 0.009-2.078v-0.103h-0.017c-0.094 0.188-0.265 0.316-0.428 0.462l-0.607-0.65 1.163-1.086h0.907v3.455h0.924zM25.749 17.179v1.642c0 0.145-0.128 0.274-0.274 0.274h-10.399c-0.154 0-0.274-0.128-0.274-0.274v-1.642c0-0.154 0.12-0.274 0.274-0.274h10.399c0.145 0 0.274 0.12 0.274 0.274zM25.749 12.8v1.642c0 0.145-0.128 0.274-0.274 0.274h-10.399c-0.154 0-0.274-0.128-0.274-0.274v-1.642c0-0.145 0.12-0.274 0.274-0.274h10.399c0.145 0 0.274 0.128 0.274 0.274z',
     save: 'M21.769 18.74h-2.255v-2.994h-3.030v2.994h-2.254l3.769 3.769zM23.531 16.52c1.938 0.141 3.487 1.761 3.487 3.734 0 2.078-1.691 3.769-3.769 3.769h-9.758c-2.501 0-4.509-2.008-4.509-4.509 0-2.325 1.761-4.227 4.016-4.474 0.951-1.797 2.818-3.065 5.002-3.065 2.748 0 5.002 1.938 5.531 4.544',
+}
+
+const TOOL_BTN_TIP_INFO = {
+    copy: {
+        name: '复制',
+        shortcut: 'Ctrl + c'
+    },
+    paste: {
+        name: '粘贴',
+        shortcut: 'Ctrl + v'
+    },
+    cut: {
+        name: '剪切',
+        shortcut: 'Ctrl + x'
+    },
+    remove: {
+        name: '删除分支',
+        shortcut: 'Delete'
+    },
+    numberChild: {
+        name: '编号子级',
+        shortcut: 'Ctrl + l'
+    },
+    save: {
+        name: '保存',
+        shortcut: 'Ctrl + s'
+    },
 }
 
 

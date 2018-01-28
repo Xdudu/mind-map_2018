@@ -1,0 +1,21 @@
+.tip {
+    position: fixed;
+    padding: 6px 12px;
+    line-height: 1.5;
+    border-radius: 2px;
+    background-color: #565656;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+
+.tip::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    display: block;
+    width: 10px;
+    height: 10px;
+    transform: translateX(-50%) rotate(45deg);
+    background-color: #565656;
+}
