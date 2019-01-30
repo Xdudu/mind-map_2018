@@ -7,16 +7,15 @@ import reducer from './reducers'
 import { selectItem } from './actions'
 import App from './components/app'
 import { retrieveMap } from './helpers/storage'
-import keyboardEventHandler from './helpers/keyboard-event-handler'
+import keyMaster from './helpers/key-master'
 
 import './css/index.css'
 
 
 const retrievedMap = retrieveMap();
-
 const store = createStore(reducer, { map: retrievedMap });
 
-document.body.onkeydown = keyboardEventHandler(store);
+keyMaster(store)
 
 document.body.onclick = e => {
     if (e.target === document.body || typeof e.target.className === 'string' && e.target.className.indexOf('branch') === 0) {
